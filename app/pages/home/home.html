@@ -1,30 +1,43 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-title text-center><img src="images/logo.svg"/></ion-title>
+    <ion-title text-center padding><img src="images/logo.svg"/></ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding class="home">
-  <div class="row text-center" padding>
-    <img src="images/home2.svg"/>
+  <div class="row text-center" padding style="margin-top:53px" *ngIf="!show_how">
+    <img src="images/shop_local.svg"/>
   </div>
-  <div class="row text-center" padding>
-    <img src="images/arrow_down.svg"/>
+  <div class="row text-center" padding  *ngIf="!show_how">
+    <img src="images/calender.svg"/>
   </div>
-  <div class="row text-center" padding>
-    <img src="images/home.svg"/>
+  <div class="row text-center" padding  *ngIf="!show_how">
+    <img src="images/piggy_bank.svg"/>
   </div>
-  <div class="row text-center" padding>
-    <p class="text-center" padding>
-      <button full primary>
+  <div class="row text-center" padding  *ngIf="!show_how">
+    <p class="text-center">
+      <button large secondary block round (click)="show_how=1">
         <ion-icon ios="ios-help" md="md-help"></ion-icon>
         How This Works
       </button>
     </p>
-    <p class="text-center" padding>
-      <button full primary>
+    <p class="text-center">
+      <button large secondary block round>
         <ion-icon ios="ios-log-in" md="md-log-in"></ion-icon>
          Sign up/login
+      </button>
+    </p>
+  </div>
+  <div class="row text-center" padding  *ngIf="show_how==1">
+    <p class="text-center">
+      How this works
+    </p>
+  </div>
+  <div class="row text-center" padding  *ngIf="show_how==1">
+    <p class="text-center">
+      <button large secondary block round (click)="show_how=''">
+        <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
+        Back
       </button>
     </p>
   </div>
