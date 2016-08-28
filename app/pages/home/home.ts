@@ -127,13 +127,13 @@ export class HomePage {
 
       }else{
 
-          if(!name && uid){
-            localStorage.setItem('owo_uid',uid)
+          if(!username && uid){
+            //localStorage.setItem('owo_uid',uid)
             this.nav.push(ProfileSetupPage,{uid:uid
             });
           }
 
-          if(name && uid){
+          if(username && uid){
             localStorage.setItem('owo_uid',uid)
             localStorage.setItem('owo_username',username)
             this.nav.push(DashboardPage,{
