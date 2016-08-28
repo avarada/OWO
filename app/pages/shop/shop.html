@@ -19,28 +19,25 @@
   <p class="text-center" *ngIf="geo_loading>0">
     Searching local businesses...
   </p>
-  <ion-list>
-    <ion-item-sliding *ngFor="let data of deals">
-      <ion-item>
+  <h3 class="text-center"><strong>Daily Deals</strong></h3>
+  <ion-list style="border:0px">
+    <ion-item-sliding *ngFor="let data of deals.deals" padding>
+      <ion-item style="border:0px">
         <ion-avatar item-left>
           <img src="{{data.product_image}}">
         </ion-avatar>
-        <h2>{{data.product_name}}: {{data.price}}</h2>
+        <h2>{{data.product_name}}: ${{data.price}}</h2>
       </ion-item>
       <ion-item-options side="left">
         <button primary>
-          <ion-icon name="text"></ion-icon>
-          Text
-        </button>
-        <button secondary>
-          <ion-icon name="call"></ion-icon>
-          Call
+          <ion-icon ios="ios-share" md="md-share"></ion-icon>
+          Share
         </button>
       </ion-item-options>
       <ion-item-options side="right">
-        <button primary>
-          <ion-icon name="mail"></ion-icon>
-          Email
+        <button primary (click)="cart(data.id)">
+            <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+             Add to cart
         </button>
       </ion-item-options>
     </ion-item-sliding>

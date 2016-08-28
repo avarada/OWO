@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>Make Payment</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="pay">
+  <ion-list>
+    <ion-grid>
+      <form action="" method="POST" id="payment-form">
+        <ion-row>
+            <ion-col width-100>
+              <ion-item>
+              <ion-label floating>Amount</ion-label>
+              <ion-input type="text" value="${{amount_cash}}" disabled></ion-input>
+            </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-100>
+              <ion-item>
+              <ion-label floating>Card Number</ion-label>
+              <ion-input [(ngModel)]="cardNumber" name="card-number" type="number"></ion-input>
+            </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-50>
+              <ion-item padding>
+                <ion-label floating>Exp Month</ion-label>
+                <ion-input [(ngModel)]="expiryMonth" name="expiry-month" type="number"></ion-input>
+              </ion-item>
+             </ion-col>
+            <ion-col width-50>
+              <ion-item padding>
+                <ion-label floating>Exp Year</ion-label>
+                <ion-input [(ngModel)]="expiryYear" name="expiry-year" type="number"></ion-input>
+              </ion-item>
+            </ion-col>
+        </ion-row>
+        <ion-row>
+            <ion-col width-100>
+              <ion-item>
+              <ion-label floating>CVC</ion-label>
+              <ion-input [(ngModel)]="cvc" name="cvc" type="number" size="4"></ion-input>
+            </ion-item>
+            </ion-col>
+        </ion-row>
+      </form>
+      <ion-row>
+        <ion-col width-100>
+          <button block primary style="padding:23px" (click)="pay()">
+            <ion-icon name="checkbox"></ion-icon>
+            Make Payment
+          </button>
+          <p class="text-center">{{message}}</p>
+
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-list>
+</ion-content>

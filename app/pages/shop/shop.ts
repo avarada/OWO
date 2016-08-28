@@ -6,6 +6,7 @@ import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Device,Facebook,BarcodeScanner,Geolocation} from 'ionic-native';
+import {PayPage} from '../pay/pay';
 
 @Component({
   templateUrl: 'build/pages/shop/shop.html',
@@ -39,10 +40,53 @@ export class ShopPage {
     this.device_id = Device.device.uuid
     this.uid = localStorage.getItem('owo_uid')
     this.data = {}
+    this.deals = {}
     //this.initializeMap()
     this.start()
   }
 
+  cart(item){
+
+    let link = 'https://gamerholic.com/server/owo/cart.php';
+    var data_post = JSON.stringify({uid: this.uid,item:item});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(link, data_post,options)
+    .map(data => data.json())
+    .catch(this.handleError)
+    .subscribe((data) =>{
+      if(data.success){
+        let alert = this.alertCtrl.create({
+            title: 'success',
+            subTitle: 'item added to cart',
+            buttons: ['OK']
+          });
+          alert.present();
+
+      }else{
+        let alert = this.alertCtrl.create({
+            title: 'error',
+            subTitle: data.message,
+            buttons: ['OK']
+          });
+          alert.present();
+
+      }
+    })
+
+
+  }
+  buy(item){
+
+    this.nav.push(PayPage,{
+      uid: this.uid,
+      item:item
+
+    });
+
+
+  }
   // initializeMap(){
   //
   //     this.geo_loading = 1
