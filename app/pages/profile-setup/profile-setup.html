@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>Update Your Profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="profile-setup">
+  <div class="row" padding style="margin-top:53px">
+    <p class="row text-center" padding>
+       <ion-icon ios="ios-contact" md="md-contact" style="font-size:53px" primary></ion-icon>
+    </p>
+    <ion-item>
+      <ion-label floating>Your name</ion-label>
+      <ion-input type="text" [(ngModel)]="form.name" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Your User Name</ion-label>
+      <ion-input type="text" [(ngModel)]="form.username" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>Your Email</ion-label>
+      <ion-input type="text" [(ngModel)]="form.email" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+  </div>
+  <div class="row">
+    <button large secondary block round (click)="save()">
+       <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+       Update
+    </button>
+  </div>
+  <p class="row text-center">
+    {{message}}
+  </p>
+</ion-content>

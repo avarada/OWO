@@ -1,11 +1,13 @@
 /// <reference path="../../../typings/index.d.ts" />
 import {Component} from '@angular/core';
-import {Modal, Platform, NavController, NavParams, ViewController,Page,Alert} from 'ionic-angular';
+import {Modal, Platform, NavController, NavParams, ViewController,Page,AlertController} from 'ionic-angular';
 import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Device,Facebook} from 'ionic-native';
+import {DashboardPage} from '../dashboard/dashboard';
+import {ProfileSetupPage} from '../profile-setup/profile-setup';
 
 @Component({
   templateUrl: 'build/pages/home/home.html'
@@ -13,15 +15,16 @@ import {Device,Facebook} from 'ionic-native';
 export class HomePage {
 
     http:any
-    message:any
-    name:any
+    login_message:any
+    username:any
     user:any
     device_id:any
     passcode:any
     uid:any
     form:any
+    data:any
 
-  constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http) {
+  constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
     this.http = http
     this.nav = nav
@@ -29,6 +32,10 @@ export class HomePage {
     this.device_id = Device.device.uuid
     this.form ={}
     this.passcode = ''
+    this.data = {}
+    if(!this.device_id){
+      this.device_id = "307087073020039"
+    }
 
 
   }
@@ -62,18 +69,17 @@ export class HomePage {
      .catch(this.handleError)
      .subscribe((data) =>{
        this.uid = data.uid,
-       this.name = data.name,
-       this.message = data.message,
+       this.username = data.username,
+       this.login_message = data.message,
        setTimeout(()=>{
 
          this.get_user()
 
        },1000)
-     }
- )
-
-
+     })
  }
+
+
 
   loginFB(type){
     this.platform.ready().then(() => {
@@ -87,15 +93,15 @@ export class HomePage {
 
           return this.http.post(link, pass,options)
           //print php error
-          .subscribe(data => {console.log(data._body)})
+          //.subscribe(data => {console.log(data._body)})
 
            //get json response
-            // .map(data => data.json())
-            // .catch(this.handleError)
-            // .subscribe((data) => this.user = data,
-            //    setTimeout(()=>{
-            //      //this.getUser()
-            //    },1200))
+            .map(data => data.json())
+            .catch(this.handleError)
+            .subscribe((data) => this.user = data,
+               setTimeout(()=>{
+                 this.get_user()
+               },1200))
 
         }else{
           alert(JSON.stringify(result))
@@ -105,8 +111,38 @@ export class HomePage {
     })
   }
 
-  get_user(){
+    get_user(){
 
+      let username = this.username
+      let uid = this.uid
+      //alert(JSON.stringify(this.user))
+      if(!name && !uid){
+
+          let alert = this.alertCtrl.create({
+              title: 'login error',
+              subTitle: 'error logging in, try again',
+              buttons: ['OK']
+            });
+            alert.present();
+
+      }else{
+
+          if(!name && uid){
+            localStorage.setItem('owo_uid',uid)
+            this.nav.push(ProfileSetupPage,{uid:uid
+            });
+          }
+
+          if(name && uid){
+            localStorage.setItem('owo_uid',uid)
+            localStorage.setItem('owo_username',username)
+            this.nav.push(DashboardPage,{
+              uid:this.uid,
+              username:this.username
+            })
+        }
+
+      }
   }
 
 
