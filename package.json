@@ -29,12 +29,25 @@
     "run-sequence": "1.1.5"
   },
   "cordovaPlugins": [
-    "cordova-plugin-device",
-    "cordova-plugin-console",
     "cordova-plugin-whitelist",
-    "cordova-plugin-splashscreen",
+    "cordova-plugin-console",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard"
+    "cordova-plugin-device",
+    "cordova-plugin-splashscreen",
+    "ionic-plugin-keyboard",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-x-socialsharing",
+    "cordova-plugin-geolocation",
+    "cordova-plugin-network-information",
+    "cordova-plugin-x-toast",
+    {
+  "locator": "https://github.com/jeduan/cordova-plugin-facebook4",
+  "variables": {
+    "APP_ID": "1136778993044484",
+    "APP_NAME": "oWo"
+  }
+}
+
   ],
   "cordovaPlatforms": [
     "ios",
@@ -44,6 +57,6 @@
       "locator": "ios"
     }
   ],
-  "name": "owo",
-  "description": "oWo: An Ionic project"
+  "name": "oWo",
+  "description": "oWo: pay secure, pay fast, pay different"
 }
