@@ -9,6 +9,7 @@ import {Device,Facebook} from 'ionic-native';
 import {ProfileSetupPage} from '../profile-setup/profile-setup';
 import {BusinessSetupPage} from '../business-setup/business-setup';
 import {BusinessPage} from '../business/business';
+import {BusinessDailDealPage} from '../business-dail-deal/business-dail-deal';
 
 @Component({
   templateUrl: 'build/pages/dashboard/dashboard.html',

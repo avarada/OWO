@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title text-center padding>Offer Daily Deal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="business-dail-deal">
+
+    <div class="row text-center" padding style="margin-top:23px">
+      <h2 class="text-center">
+        Offer Daily Deals
+      </h2>
+      <h5 class="text-center">
+        Select item
+      </h5>
+
+      <ion-grid>
+        <ion-row>
+          <ion-col width-33 *ngFor="let data of inventory.inventory">
+            <ion-card>
+
+              <ion-card-header>
+                {{data.product_name}}
+              </ion-card-header>
+
+              <ion-card-content>
+                <img src="{{data.product_image}}" style="height:100px; width:auto"  />
+              </ion-card-content>
+
+            </ion-card>
+          </ion-col>
+
+        </ion-row>
+      </ion-grid>
+    </div>
+</ion-content>

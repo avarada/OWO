@@ -6,13 +6,13 @@
 
 <ion-content padding class="business">
 
-  <div class="row text-center" padding style="margin-top:23px" *ngIf="!offer_deal && !add_item && !view_inventory">
+  <div class="row text-center" padding style="margin-top:23px" *ngIf="!add_item && !view_inventory">
     <p class="text-center">
       <ion-icon ios="ios-cog" md="md-cog" style="font-size:43px" primary></ion-icon>
     </p>
 
     <p class="text-center">
-      <button large secondary block round (click)="offer_deal=1">
+      <button large secondary block round (click)="offer_deal()">
         <ion-icon ios="ios-pricetag" md="md-pricetag"></ion-icon>
         Offer Daily Deal
       </button>
@@ -52,7 +52,12 @@
     </h4>
     <ion-item *ngIf="product_name">
       <ion-label floating>Price</ion-label>
-      <ion-input type="text" [(ngModel)]="form.price" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+      <ion-input type="number" [(ngModel)]="form.price" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="product_name">
+      <ion-label floating>Total count</ion-label>
+      <ion-input type="number" [(ngModel)]="form.total" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
     </ion-item>
     <p class="text-center" *ngIf="product_name">
       <button large secondary block round (click)="add()">
@@ -61,7 +66,7 @@
       </button>
     </p>
     <p class="text-center" *ngIf="product_name">
-      <button large clear block round (click)="add()">
+      <button large clear block round (click)="add_item=''">
         <ion-icon ios="ios-arrow-back" md="md-arrow-back"></ion-icon>
         back
       </button>
