@@ -23,6 +23,7 @@ export class HomePage {
     uid:any
     form:any
     data:any
+    has_business :any
 
   constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
@@ -70,12 +71,13 @@ export class HomePage {
      .subscribe((data) =>{
        this.uid = data.uid,
        this.username = data.username,
+       this.has_business = data.has_business,
        this.login_message = data.message,
-       setTimeout(()=>{
+         setTimeout(()=>{
 
-         this.get_user()
+           this.get_user()
 
-       },1000)
+         },1000)
      })
  }
 
@@ -138,7 +140,8 @@ export class HomePage {
             localStorage.setItem('owo_username',username)
             this.nav.push(DashboardPage,{
               uid:this.uid,
-              username:this.username
+              username:this.username,
+              has_business: this.has_business
             })
         }
 

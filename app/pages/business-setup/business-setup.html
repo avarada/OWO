@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title text-center padding>Setup up business profile</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="business-setup">
+  <div class="row text-center" padding style="margin-top:23px">
+    <p class="row text-center" padding>
+       <img src="images/local_business.svg" />
+    </p>
+    <ion-item *ngIf="!business_address && !ask_code">
+      <ion-label floating>Your Yelp ID</ion-label>
+      <ion-input type="text" [(ngModel)]="form.yelp" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+  </div>
+  <div class="row" *ngIf="!business_address && !ask_code">
+    <button large secondary block round (click)="yelp()">
+       <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+       continue
+    </button>
+  </div>
+  <div class="row text-center" padding *ngIf="!business_address && !ask_code">
+    <h4 class="text-center" padding>How to get your Yelp id</h4>
+    <img src="images/yelp.svg" />
+  </div>
+
+  <div class="row" padding *ngIf="business_address && !ask_code">
+    <h4 class="text-center">
+      <strong>{{business_name}}</strong>
+    </h4>
+    <h4 class="text-center">
+      <strong>{{business_address}}, {{business_city}} {{business_state}} {{business_zip}}</strong>
+    </h4>
+    <h4 class="text-center">
+      <strong>{{business_phone}}</strong>
+    </h4>
+    <h4 class="text-center">
+      <strong>Yelp Rating: {{business_rating}}</strong>
+    </h4>
+
+    <p class="text-center">
+      <button large secondary block round (click)="ask_code=1">
+        <ion-icon ios="ios-phone-portrait" md="md-phone-portrait"></ion-icon>
+        Give me a call
+      </button>
+    </p>
+    <p class="text-center">
+      You'll get the code needed to continue
+    </p>
+  </div>
+  <div class="row" padding *ngIf="ask_code">
+
+    <ion-item>
+      <ion-label floating>Enter verification code</ion-label>
+      <ion-input type="text" [(ngModel)]="form.code" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+    </ion-item>
+    <p class="text-center">
+      <button large secondary block round (click)="complete()">
+        <ion-icon ios="ios-thumbs-up" md="md-thumbs-up"></ion-icon>
+        complete
+      </button>
+    </p>
+
+  </div>
+
+</ion-content>
