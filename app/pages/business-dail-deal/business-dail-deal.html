@@ -10,19 +10,24 @@
       <h2 class="text-center">
         Offer Daily Deals
       </h2>
-      <h5 class="text-center">
+      <h5 class="text-center" *ngIf="count>0">
         Select item
       </h5>
+      <div class="row" *ngIf="count<1" padding>
+        <h3 class="text-center" padding>
+          <strong>Add items to your inventory <br />to offer daily deals</strong>
+        </h3>
+        <p class="padding">
 
+        </p>
+      </div>
       <ion-grid>
         <ion-row>
           <ion-col width-33 *ngFor="let data of inventory.inventory">
-            <ion-card>
-
+            <ion-card (click)="setDeal(data.product_name,data.product_image,data.price,data.business,data.barcode)">
               <ion-card-header>
                 {{data.product_name}}
               </ion-card-header>
-
               <ion-card-content>
                 <img src="{{data.product_image}}" style="height:100px; width:auto"  />
               </ion-card-content>

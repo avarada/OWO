@@ -7,6 +7,8 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Device,Facebook,BarcodeScanner} from 'ionic-native';
 import {BusinessPage} from '../business/business';
+import {BusinessSetDealPage} from '../business-set-deal/business-set-deal';
+
 
 @Component({
   templateUrl: 'build/pages/business-dail-deal/business-dail-deal.html',
@@ -19,6 +21,7 @@ export class BusinessDailDealPage {
   uid:any
   data:any
   inventory:any
+  count:any
 
 constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
@@ -46,13 +49,28 @@ constructor(private nav: NavController, navParams : NavParams,private platform: 
       .map(data => data.json())
       .catch(this.handleError)
       .subscribe((data) =>{
+        console.log(JSON.stringify(data))
         if(data.success){
-          this.inventory = data
+          this.inventory = data,
+          this.count = data.count
         }else{
 
         }
       })
 
+
+  }
+
+  setDeal(product_name,product_image,price,business,barcode){
+    //console.log(product_name,product_image,price,business,barcode)
+    this.nav.push(BusinessSetDealPage,{
+      uid:this.uid,
+      product_name:product_name,
+      product_image:product_image,
+      pice:price,
+      business:business,
+      barcode:barcode
+    });
 
   }
 

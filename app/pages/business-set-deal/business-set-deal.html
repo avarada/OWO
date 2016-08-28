@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title text-center padding>Offer Daily Deal</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="business-set-deal">
+  <div class="row text-center" padding style="margin-top:23px">
+    <h2 class="text-center">
+      Offer Daily Deals
+    </h2>
+    <div class="row" padding>
+      <p class="text-center">
+        <img src="{{product_image}}" style="max-height:150px; width:auto" />
+
+      </p>
+      <p class="text-center">
+        {{product_name}}
+      </p>
+      <ion-item>
+        <ion-label floating>Price</ion-label>
+        <ion-input type="number" [(ngModel)]="form.price" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+      </ion-item>
+      <p class="text-center">
+        <button large secondary block round (click)="create()">
+          <ion-icon ios="ios-add-circle" md="md-add-circle"></ion-icon>
+          Create Deal
+        </button>
+      </p>
+
+    </div>
+
+  </div>
+</ion-content>

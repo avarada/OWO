@@ -53,7 +53,7 @@
 
     <ion-item>
       <ion-label floating>Enter verification code</ion-label>
-      <ion-input type="text" [(ngModel)]="form.code" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
+      <ion-input type="number" [(ngModel)]="form.code" autocomplete="off" autocorrect="off" autocapitalize="off"></ion-input>
     </ion-item>
     <p class="text-center">
       <button large secondary block round (click)="complete()">

@@ -92,6 +92,8 @@ export class BusinessPage {
       .map(data => data.json())
       .catch(this.handleError)
       .subscribe((data) => {
+        console.log(JSON.stringify(data))
+      
         if(data.success){
           let alert = this.alertCtrl.create({
               title: 'success',
