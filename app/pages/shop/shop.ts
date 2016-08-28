@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
 import {Device,Facebook,BarcodeScanner,Geolocation} from 'ionic-native';
 import {PayPage} from '../pay/pay';
+import {SelfCheckoutPage} from '../self-checkout/self-checkout';
 
 @Component({
   templateUrl: 'build/pages/shop/shop.html',
@@ -32,6 +33,7 @@ export class ShopPage {
   zip:any
   country:any
   deals:any
+  total:any
 
   constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
@@ -57,6 +59,8 @@ export class ShopPage {
     .catch(this.handleError)
     .subscribe((data) =>{
       if(data.success){
+        this.total = data.total
+        //console.log(JSON.stringify(data))
         let alert = this.alertCtrl.create({
             title: 'success',
             subTitle: 'item added to cart',
@@ -75,18 +79,23 @@ export class ShopPage {
       }
     })
 
-
   }
-  buy(item){
 
+  pay(item){
     this.nav.push(PayPage,{
       uid: this.uid,
-      item:item
-
+      total:this.total
     });
 
+  }
+
+  self_checkout(){
+    this.nav.push(SelfCheckoutPage ,{
+      uid: this.uid
+    });
 
   }
+
   // initializeMap(){
   //
   //     this.geo_loading = 1

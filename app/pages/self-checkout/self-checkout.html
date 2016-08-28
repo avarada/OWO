@@ -1,0 +1,37 @@
+<ion-header>
+  <ion-navbar primary>
+    <ion-title>Self Checkout</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding class="self-checkout">
+  <h2 class="text-center">
+    Check out while you shop... welcome to the future
+  </h2>
+  <h4 class="text-center">
+    check out: ${{total}}
+  </h4>
+  <p class="text-center" *ngIf="!product_name">
+    <button large secondary block round (click)="scan()">
+      <ion-icon ios="ios-barcode" md="md-barcode"></ion-icon>
+      Scan barcode
+    </button>
+  </p>
+  <p class="text-center" *ngIf="product_name">
+    <img src="{{product_image}}" />
+  </p>
+  <h4 class="text-center" *ngIf="product_name">
+    {{product_name}}
+  </h4>
+  <h4 class="text-center" *ngIf="product_name">
+    $price: {{price}}
+  </h4>
+
+  <p class="text-center">
+    <button large secondary block round (click)="cart()">
+       <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
+      Add to cart
+    </button>
+
+  </p>
+</ion-content>

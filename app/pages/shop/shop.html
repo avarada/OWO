@@ -9,7 +9,7 @@
     Are you at the store? Check yourself out..
   </h4>
   <p class="text-center">
-    <button large secondary block round (click)="show_login=1">
+    <button large secondary block round (click)="self_checkout()">
        <ion-icon ios="ios-cart" md="md-cart"></ion-icon>
        self checkout
     </button>
@@ -20,6 +20,7 @@
     Searching local businesses...
   </p>
   <h3 class="text-center"><strong>Daily Deals</strong></h3>
+  <h4 class="text-center" *ngIf="total>0"><strong (click)="pay()">checkout: ${{total}}</strong></h4>
   <ion-list style="border:0px">
     <ion-item-sliding *ngFor="let data of deals.deals" padding>
       <ion-item style="border:0px">

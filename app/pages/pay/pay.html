@@ -5,7 +5,69 @@
 </ion-header>
 
 <ion-content padding class="pay">
-  <ion-list>
+  <div class="row" *ngIf="!ask_card">
+    <p class="text-center">
+      <img src="images/piggy_bank.svg"  />
+
+    </p>
+    <h2 class="text-center">
+      Choose your savings...
+    </h2>
+    <div class="text-center" padding>
+      <h3 class="text-center">
+        Pay 1.5x more and you'll get back 50% in 60 days
+      </h3>
+      <button large primary block round (click)="ask_payment('1')">
+        <ion-icon ios="ios-card" md="md-card"></ion-icon>
+        Pay {{total * 1.5 | currency:'USD':true:'1.2-2'}}
+      </button>
+    </div>
+    <div class="text-center" padding>
+      <h3 class="text-center">
+        Pay 2x more and you'll get back 60% in 60 days
+      </h3>
+      <button large secondary block round (click)="ask_payment('2')">
+        <ion-icon ios="ios-card" md="md-card"></ion-icon>
+        Pay {{total * 3 | currency:'USD':true:'1.2-2'}}
+      </button>
+    </div>
+    <div class="text-center" padding>
+      <h3 class="text-center">
+        Pay 2.5x more and you'll get back 70% in 45 days
+      </h3>
+      <button large primary block round (click)="ask_payment('3')">
+        <ion-icon ios="ios-card" md="md-card"></ion-icon>
+        Pay {{total * 2.5 | currency:'USD':true:'1.2-2'}}
+      </button>
+    </div>
+    <div class="text-center" padding>
+      <h3 class="text-center">
+        Pay 3x more and you'll get back 80% in 45 days
+      </h3>
+      <button large secondary block round (click)="ask_payment('4')">
+        <ion-icon ios="ios-card" md="md-card"></ion-icon>
+        Pay {{total * 3 | currency:'USD':true:'1.2-2'}}
+      </button>
+    </div>
+    <div class="text-center" padding>
+      <h3 class="text-center">
+        Pay the regular price
+      </h3>
+      <button large primary block round (click)="ask_payment('5')">
+        <ion-icon ios="ios-card" md="md-card"></ion-icon>
+        Pay ${{total}}
+      </button>
+    </div>
+
+
+  </div>
+  <ion-list *ngIf="ask_card==1">
+    <p class="text-center">
+      <img src="images/mastercard.svg"  />
+    </p>
+      <h4 class="text-center">
+        total: {{pay_total | currency:'USD':true:'1.2-2'}}
+      </h4>
     <ion-grid>
       <form action="" method="POST" id="payment-form">
         <ion-row>

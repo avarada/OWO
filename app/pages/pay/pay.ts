@@ -17,6 +17,9 @@ export class PayPage {
   device_id:any
   uid:any
   data:any
+  total:any
+  pay_total:any
+  ask_card:any
 
 constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
@@ -25,9 +28,27 @@ constructor(private nav: NavController, navParams : NavParams,private platform: 
       this.data = {}
       this.device_id = Device.device.uuid
       this.uid = localStorage.getItem('owo_uid')
+      this.total = navParams.get("total");
 
   }
-  cart(item){
+  ask_payment(value){
 
+      if(value==1){
+        this.pay_total = this.total * 1.5
+      }
+      if(value==2){
+        this.pay_total = this.total * 2
+      }
+      if(value==3){
+        this.pay_total = this.total * 2.5
+      }
+      if(value==4){
+        this.pay_total = this.total * 3
+      }
+      if(value==5){
+        this.pay_total = this.total * 3.5
+      }
+
+      this.ask_card = 1
   }
 }
