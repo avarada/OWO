@@ -5,7 +5,8 @@ import {Http, Headers, RequestOptions} from '@angular/http';
 import 'rxjs/add/operator/map';
 import {Observable} from 'rxjs/Observable';
 import 'rxjs/Rx';
-import {Device,Facebook} from 'ionic-native';
+import {Device,Facebook,BarcodeScanner} from 'ionic-native';
+import {BusinessPage} from '../business/business';
 
 @Component({
   templateUrl: 'build/pages/business-setup/business-setup.html',
@@ -26,6 +27,7 @@ export class BusinessSetupPage {
   business_city:any
   business_state:any
   data_post:any
+  code:any
 
   constructor(private nav: NavController, navParams : NavParams,private platform: Platform, http: Http, public alertCtrl: AlertController) {
 
@@ -63,6 +65,7 @@ export class BusinessSetupPage {
           this.business_city = data.business_city
           this.business_state = data.business_state
           this.business_zip = data.business_zip
+          this.code = data.code
 
         }else{
 
@@ -78,6 +81,62 @@ export class BusinessSetupPage {
 
   }
 
+complete(){
+
+  let code_entered = this.form.code
+
+  if(code_entered==this.code){
+
+    let link = 'https://gamerholic.com/server/owo/yelp_complete.php';
+    var data_post = JSON.stringify({uid: this.uid,code:this.form.code});
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.post(link, data_post,options)
+    //print php error
+    //.subscribe(data => {console.log(data._body)})
+
+     //get json response
+      .map(data => data.json())
+      .catch(this.handleError)
+      .subscribe((data) =>{
+        if(data.success){
+
+          this.nav.push(BusinessPage,{
+            uid:this.uid,
+            business:this.business_name,
+            address:this.business_address,
+            city:this.business_city,
+            state:this.business_state,
+            zip:this.business_zip,
+            phone:this.business_phone,
+            rating:this.business_rating,
+            image:this.business_image
+
+          });
+        }else{
+          let alert = this.alertCtrl.create({
+              title: 'error',
+              subTitle: data.message,
+              buttons: ['OK']
+            });
+            alert.present();
+
+        }
+      })
+
+  }else{
+
+    let alert = this.alertCtrl.create({
+        title: 'error',
+        subTitle: 'invalid code',
+        buttons: ['OK']
+      });
+      alert.present();
+
+  }
+
+}
   handleError(error){
         console.error(error);
         return Observable.throw(error.json().error || 'Server error');
