@@ -47,23 +47,73 @@
     </h3>
   </div>
   <div class="row text-center" padding  *ngIf="show_login==1">
-    <div class="row" padding>
-      <h3 class="text-center">
-        <strong>I'm a shopper</strong>
-      </h3>
-      <button large secondary block round (click)="loginFB('1')">
-        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
-        Facebook
+      <ion-grid style="margin-top:7px">
+        <ion-row class="text-center" style="min-height:33px">
+          <ion-col width-25> <b>{{passcode.substring(0, 1)}}</b></ion-col>
+          <ion-col width-25> <b>{{passcode.substring(1, 2)}}</b></ion-col>
+          <ion-col width-25> <b>{{passcode.substring(2, 3)}}</b></ion-col>
+          <ion-col width-25> <b>{{passcode.substring(3, 4)}}</b></ion-col>
+        </ion-row>
+      </ion-grid>
+    <div style="margin-top: 7px">
+      <div class="text-center">
+        Enter Your Pin
+      </div>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-33>
+             <button block secondary large (click)="add(1)">1</button>
+          </ion-col>
+          <ion-col width-33>
+            <button block secondary large (click)="add(2)">2</button>
+          </ion-col>
+          <ion-col width-33>
+            <button block secondary large (click)="add(3)">3</button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-grid>
+        <ion-row>
+          <ion-col width-33>
+             <button block secondary large (click)="add(4)">4</button>
+          </ion-col>
+          <ion-col width-33>
+            <button block secondary large (click)="add(5)">5</button>
+          </ion-col>
+          <ion-col width-33>
+            <button block secondary large (click)="add(6)">6</button>
+          </ion-col>
+        </ion-row>
+    </ion-grid>
+    <ion-grid>
+      <ion-row>
+        <ion-col width-33>
+           <button block secondary large (click)="add(7)">7</button>
+        </ion-col>
+        <ion-col width-33>
+          <button block secondary large (click)="add(8)">8</button>
+        </ion-col>
+        <ion-col width-33>
+          <button block secondary large (click)="add(9)">9</button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <div class="row text-center">
+      <button secondary block round clear (click)="delete()">
+        <ion-icon name="ios-arrow-back-outline"></ion-icon>
+        Delete
       </button>
     </div>
-    <div class="row" padding>
-      <h3 class="text-center">
-        <strong>I'm a small business</strong>
-      </h3>
-      <button large dark block round (click)="loginFB('2')">
-        <ion-icon ios="logo-facebook" md="logo-facebook"></ion-icon>
-        Facebook
-      </button>
+      <div class="row text-center" padding>
+        <button block secondary (click)="login()" style="padding:33px">
+          <ion-icon name="phone-portrait"></ion-icon>
+          Login
+        </button>
+        <p class="text-center">{{login_message}}</p>
+        <p class="text-center" style="font-size:10px">
+          New members the pin you enter will be your new pin
+        </p>
+      </div>
     </div>
 
 
